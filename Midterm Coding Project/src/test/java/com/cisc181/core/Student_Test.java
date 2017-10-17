@@ -23,10 +23,10 @@ public class Student_Test {
 
 	}
 
-	private static ArrayList<Course> course = new ArrayList<Course>(3);
-	private static ArrayList<Semester> semester = new ArrayList<Semester>(2);
-	private static ArrayList<Section> section = new ArrayList<Section>(2);
-	private static ArrayList<Student> students = new ArrayList<Student>(10);
+	private static ArrayList<Course> course = new ArrayList<Course>();
+	private static ArrayList<Semester> semester = new ArrayList<Semester>();
+	private static ArrayList<Section> section = new ArrayList<Section>();
+	private static ArrayList<Student> students = new ArrayList<Student>();
 	private static ArrayList<Enrollment> enrollmentlist = new ArrayList<Enrollment>();
 
 	@BeforeClass
@@ -57,27 +57,27 @@ public class Student_Test {
 		section.addAll(Arrays.asList(s1, s2, s3, s4, s5, s6));
 
 		// set 10 students
-		Student n1 = new Student("name1", "name1", "name1", Date(2015, 8, 25), eMajor.COMPSI, "Address1",
+		Student st1 = new Student("name1", "name1", "name1", Date(2017, 1, 1), eMajor.COMPSI, "Address1",
 				"111-111-1111", "email 1");
-		Student n2 = new Student("name2", "name2", "name2", Date(2015, 8, 25), eMajor.COMPSI, "Address2",
+		Student st2 = new Student("name2", "name2", "name2", Date(2017, 2, 2), eMajor.COMPSI, "Address2",
 				"222-222-2222", "email 2");
-		Student n3 = new Student("name3", "name3", "name3", Date(2015, 8, 25), eMajor.COMPSI, "Address3",
+		Student st3 = new Student("name3", "name3", "name3", Date(2017, 3, 3), eMajor.COMPSI, "Address3",
 				"333-333-3333", "email 3");
-		Student n4 = new Student("name4", "name4", "name4", Date(2015, 8, 25), eMajor.COMPSI, "Address4",
+		Student st4 = new Student("name4", "name4", "name4", Date(2017, 4, 4), eMajor.COMPSI, "Address4",
 				"(444-444-4444", "email 4");
-		Student n5 = new Student("name5", "name5", "name5", Date(2015, 8, 25), eMajor.CHEM, "Address5", "555-555-5555",
+		Student st5 = new Student("name5", "name5", "name5", Date(2017, 5, 5), eMajor.CHEM, "Address5", "555-555-5555",
 				"email 5");
-		Student n6 = new Student("name6", "name6", "name6", Date(2015, 8, 25), eMajor.CHEM, "Address6", "666-666-6666",
+		Student st6 = new Student("name6", "name6", "name6", Date(2017, 6, 6), eMajor.CHEM, "Address6", "666-666-6666",
 				"email 6");
-		Student n7 = new Student("name7", "name7", "name7", Date(2015, 8, 25), eMajor.PHYSICS, "Address7",
+		Student st7 = new Student("name7", "name7", "name7", Date(2017, 7, 7), eMajor.PHYSICS, "Address7",
 				"777-777-7777", "email 7");
-		Student n8 = new Student("name8", "name8", "name8", Date(2015, 8, 25), eMajor.PHYSICS, "Address8",
+		Student st8 = new Student("name8", "name8", "name8", Date(2017, 8, 8), eMajor.PHYSICS, "Address8",
 				"888-888-8888", "email 8");
-		Student n9 = new Student("name9", "name9", "name9", Date(2015, 8, 25), eMajor.PHYSICS, "Address9",
+		Student st9 = new Student("name9", "name9", "name9", Date(2017, 9, 9), eMajor.PHYSICS, "Address9",
 				"999-999-9999", "email 9");
-		Student n10 = new Student("name10", "name10", "name10", Date(2015, 8, 25), eMajor.PHYSICS, "Address10",
+		Student st10 = new Student("name10", "name10", "name10", Date(2017, 10, 10), eMajor.PHYSICS, "Address10",
 				"101-010-1010", "email 10");
-		students.addAll(Arrays.asList(n1, n2, n3, n4, n5, n6, n7, n8, n9, n10));
+		students.addAll(Arrays.asList(st1, st2, st3, st4, st5, st6, st7, st8, st9, st10));
 
 		// enroll student
 		for (Student student : students) {
@@ -89,7 +89,7 @@ public class Student_Test {
 		// set grade
 		for (Enrollment enrollment : enrollmentlist) {
 			if (enrollment.getStudentID() == students.get(0).getStudentID()) {
-				enrollment.setGrade(82);
+				enrollment.setGrade(81);
 			} else if (enrollment.getStudentID() == students.get(1).getStudentID()) {
 				enrollment.setGrade(94);
 			} else if (enrollment.getStudentID() == students.get(2).getStudentID()) {
@@ -113,10 +113,10 @@ public class Student_Test {
 	}
 
 	// get GPA (made up scalar)
-	public double getGPA(UUID d) {
+	public double getGPA(UUID id) {
 		double GPA = 0.00;
 		for (Enrollment enrollment : enrollmentlist) {
-			if (enrollment.getStudentID() == d) {
+			if (enrollment.getStudentID() == id) {
 				if (enrollment.getGrade() >= 93) {
 					GPA = 4.00;
 				} else if (enrollment.getGrade() >= 90 && enrollment.getGrade() < 93) {
@@ -152,34 +152,24 @@ public class Student_Test {
 	public void testStudentGPA() {
 		// test GPA for Student 1
 		assertEquals(getGPA(enrollmentlist.get(0).getStudentID()), 2.7, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(0).getStudentID()));
 		// test GPA for Student 2
 		assertEquals(getGPA(enrollmentlist.get(1).getStudentID()), 4.0, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(1).getStudentID()));
 		// test GPA for Student 3
 		assertEquals(getGPA(enrollmentlist.get(2).getStudentID()), 3.7, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(2).getStudentID()));
 		// test GPA for Student 4
 		assertEquals(getGPA(enrollmentlist.get(3).getStudentID()), 3.0, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(3).getStudentID()));
 		// test GPA for Student 5
 		assertEquals(getGPA(enrollmentlist.get(4).getStudentID()), 3.3, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(4).getStudentID()));
 		// test GPA for Student 6
 		assertEquals(getGPA(enrollmentlist.get(5).getStudentID()), 2.0, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(5).getStudentID()));
 		// test GPA for Student 7
 		assertEquals(getGPA(enrollmentlist.get(6).getStudentID()), 2.0, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(6).getStudentID()));
 		// test GPA for Student 8
 		assertEquals(getGPA(enrollmentlist.get(7).getStudentID()), 0.0, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(7).getStudentID()));
 		// test GPA for Student 9
 		assertEquals(getGPA(enrollmentlist.get(8).getStudentID()), 1.5, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(8).getStudentID()));
 		// test GPA for Student 10
 		assertEquals(getGPA(enrollmentlist.get(9).getStudentID()), 1.3, 0.1);
-		System.out.println(getGPA(enrollmentlist.get(9).getStudentID()));
 	}
 
 	@Test
@@ -191,12 +181,11 @@ public class Student_Test {
 
 		double average2 = 81.5;
 		double acual2 = (enrollmentlist.get(4).getGrade() + enrollmentlist.get(5).getGrade()) / 2;
-		assertEquals(average, acual, 0.1);
+		assertEquals(average2, acual2, 0.1);
 
 		double average3 = 65.0;
 		double acual3 = (enrollmentlist.get(6).getGrade() + enrollmentlist.get(7).getGrade()
 				+ enrollmentlist.get(8).getGrade() + enrollmentlist.get(9).getGrade()) / 4;
-		assertEquals(average, acual, 0.1);
-
+		assertEquals(average3, acual3, 0.1);
 	}
 }

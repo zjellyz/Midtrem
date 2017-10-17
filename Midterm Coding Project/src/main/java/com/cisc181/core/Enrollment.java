@@ -11,6 +11,7 @@ public class Enrollment {
 	private double Grade;
 
 	private Enrollment() {
+		
 	}
 
 	public Enrollment(UUID theStudentID, UUID theSectionID) {
