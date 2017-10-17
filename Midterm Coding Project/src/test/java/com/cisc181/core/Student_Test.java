@@ -43,7 +43,7 @@ public class Student_Test {
 		semester.addAll(Arrays.asList(fall, spring));
 
 		// set 3 sections for each semester
-		ArrayList<Section> alist = new ArrayList<Section>(3);
+		ArrayList<Section> alist = new ArrayList<Section>();
 		Section s1 = new Section(c1.getCourseID(), spring.getSemesterID(), 102, null);
 		Section s2 = new Section(c2.getCourseID(), spring.getSemesterID(), 202, null);
 		Section s3 = new Section(c3.getCourseID(), spring.getSemesterID(), 302, null);
@@ -77,6 +77,7 @@ public class Student_Test {
 				"999-999-9999", "email 9");
 		Student st10 = new Student("name10", "name10", "name10", Date(2017, 10, 10), eMajor.PHYSICS, "Address10",
 				"101-010-1010", "email 10");
+		
 		students.addAll(Arrays.asList(st1, st2, st3, st4, st5, st6, st7, st8, st9, st10));
 
 		// enroll student

@@ -10,7 +10,7 @@ public class Semester {
 		private Date StartDate;
 		private Date EndDate;
 		
-		public Semester(UUID semesterid, Date StartDate, Date EndDate) {
+		public Semester(UUID SemesterID, Date StartDate, Date EndDate) {
 		this.SemesterID = SemesterID;
 		this.StartDate = StartDate;
 		this.EndDate = EndDate;

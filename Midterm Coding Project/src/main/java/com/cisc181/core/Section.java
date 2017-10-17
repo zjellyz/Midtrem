@@ -12,7 +12,7 @@ public class Section{
 	private UUID SectionID;
 	private int RoomID;
 	
-	public Section(UUID CourseID, UUID Semester, int RoomID,UUID SectionID) {
+	public Section(UUID CourseID, UUID SemesterID, int RoomID,UUID SectionID) {
 		this.SectionID = SectionID;
 		this.RoomID = RoomID;
 		this.CourseID = CourseID;
